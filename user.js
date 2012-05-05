@@ -112,6 +112,7 @@ User.prototype.quit = function(msg) {
             chan.users.splice(idx, 1);
         }
     }
+	 delete this.irc.users[this.nick];
 };
 
 User.prototype.isOn = function(channel) {
