@@ -10,16 +10,20 @@ var sys = require('util');
 Plugin = exports.Plugin = function(irc) {
 	this.name = 'reload';
 	this.title = 'Plugin Reloader';
-	this.version = '0.1';
+	this.version = '0.2';
 	this.author = 'Michael Owens';
 
 	this.irc = irc;
 
-	this.irc.addTrigger(this, 'reload', this.trigGezien);
+    this.help = 'This plugin provides the functionality to reload plugins on demand.';
+    this.helpCommands = [irc.config.command + 'reload - reloads a given plugin', 
+                         irc.config.command + 'unload - unloads a given plugin'];    
+
+	this.irc.addTrigger(this, 'reload', this.reloadPlugin);
     this.irc.addTrigger(this, 'unload', this.unloadPlugin);
 };
 
-Plugin.prototype.trigGezien = function(msg) {
+Plugin.prototype.reloadPlugin = function(msg) {
 	var irc = this.irc, // irc object
         c = msg.arguments[0], // channel
         chan = irc.channels[c], // channel object
@@ -28,7 +32,7 @@ Plugin.prototype.trigGezien = function(msg) {
         params = m.split(' ');
 
 	params.shift();
-	irc.send(chan && chan.name || u, 'Reloading plugin: ' + params[0]);
+	irc.send(chan && chan.name || u, 'reloading plugin: ' + params[0]);
 	irc.loadPlugin(params[0]);
 
 

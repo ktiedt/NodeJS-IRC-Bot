@@ -2,6 +2,7 @@
 ==========================
 * ADDED:
   * package.json
+  * new plugin help - you can add help messages to each plugin (use !help to view the messages)
 * UPDATED:
   * translated textfilter plugin to english 
 

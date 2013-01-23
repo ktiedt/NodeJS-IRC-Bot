@@ -12,8 +12,11 @@ Plugin = exports.Plugin = function(irc) {
 	this.title = 'Word filter';
 	this.version = '0.2';
 	this.author = 'Michael Owens, Markus M. May';
-
 	this.irc = irc;
+
+    this.help = 'This plugin provides a textfilter for words not wanted in the channel';
+    this.helpCommands = [irc.config.command + 'addword - adds a word to the textfilter list'];
+
 	this.filters = ['swine', 'politician', 'girl'];
 
     irc.addTrigger(this, 'addword', this.trigAddword);
