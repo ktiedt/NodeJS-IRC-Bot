@@ -1,3 +1,10 @@
+01/22/2013 - Version 0.0.5
+==========================
+* ADDED:
+  * package.json
+* UPDATED:
+  * translated textfilter plugin to english 
+
 12/23/2011
 ==========
 * ADDED:
