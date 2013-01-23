@@ -9,12 +9,12 @@ var sys = require('util');
 
 Plugin = exports.Plugin = function(irc) {
 	this.name = 'textfilter';
-	this.title = 'Woord filter';
-	this.version = '0.1';
-	this.author = 'Michael Owens';
+	this.title = 'Word filter';
+	this.version = '0.2';
+	this.author = 'Michael Owens, Markus M. May';
 
 	this.irc = irc;
-	this.filters = ['kanker', 'tyfus', 'tering'];
+	this.filters = ['swine', 'politician', 'girl'];
 
     irc.addTrigger(this, 'addword', this.trigAddword);
 };
@@ -31,8 +31,14 @@ Plugin.prototype.onMessage = function(msg) {
         }
 	}
 
+    // if the bot itself uses bad language (e.g. on answering with an added word), 
+    // do not send the message (do not disallow the word)
+    if (u.nick == this.irc.config.nickname) {
+        disallow = false;
+    }
+
 	if (disallow) {
-		this.irc.channels[c].send('\002' + u + ':\002 Let op je taalgebruik!');
+		this.irc.channels[c].send('\002' + u + ':\002 Watch your language!');
 	}
 };
 
@@ -46,9 +52,9 @@ Plugin.prototype.trigAddword = function(msg) {
 
 	params.shift();
     if (typeof params[0] == 'undefined') {
-        chan.send('\002Voorbeeld:\002 .addword <woord>');
+        chan.send('\002Example:\002 ' + irc.config.command + 'addword <word>');
     } else {
         this.filters.push(params[0]);
-		chan.send('Het woord \002' + params[ 0] + '\002 is vanaf nu niet meer toegestaan!');
+		chan.send('The word \002' + params[0] + '\002 is no longer allowed in here!');
     }
 };
