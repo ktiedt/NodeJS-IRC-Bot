@@ -15,11 +15,11 @@ Plugin = exports.Plugin = function(irc) {
 
 	this.irc = irc;
 
-	this.irc.addTrigger(this, 'reload', this.trigGezien);
+	this.irc.addTrigger(this, 'reload', this.loadPlugin);
     this.irc.addTrigger(this, 'unload', this.unloadPlugin);
 };
 
-Plugin.prototype.trigGezien = function(msg) {
+Plugin.prototype.loadPlugin = function(msg) {
 	var irc = this.irc, // irc object
         c = msg.arguments[0], // channel
         chan = irc.channels[c], // channel object

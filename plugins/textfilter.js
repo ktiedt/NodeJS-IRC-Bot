@@ -33,7 +33,7 @@ Plugin.prototype.onMessage = function(msg) {
 
     // if the bot itself uses bad language (e.g. on answering with an added word), 
     // do not send the message (do not disallow the word)
-    if (u.nick == this.irc.config.nickname) {
+    if (u == this.irc.nick || m.indexOf(this.irc.config.command + 'addword') === 0) {
         disallow = false;
     }
 
