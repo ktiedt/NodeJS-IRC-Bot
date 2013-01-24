@@ -4,13 +4,22 @@ This is a plugin-based IRC Bot written in NodeJS and maintained by [Karl Tiedt](
 
 Prerequisites
 =============
-* NodeJS (tested under v0.6.5)
+* NodeJS (tested under v0.8.17)
 
 How to run
 ==========
-Modify your configuration in bot.js and run the following command:
+Install all dependencies of the bot using 
+
+    npm install
+
+Modify your configuration in config/config.json and start your bot with the following command:
 
     node bot.js
+
+Or create a new config file (e.g. test.json) in the config directory and start your bot with the 
+following command:
+
+    node bot.js --config=test    
 
 The bot will now attempt to connect. Turn on debugging to see the incoming/outgoing packets.
 

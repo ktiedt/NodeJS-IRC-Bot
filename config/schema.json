@@ -1,0 +1,67 @@
+{
+    "properties": {
+        "host": {
+            "description": "The IRC server to connect to.",
+            "type": "string",
+            "required": true,
+            "default": "irc.freenode.com"
+        },
+        "port": {
+            "description": "The port of the IRC server.",
+            "type": "integer",
+            "required": true,
+            "minimum": 1,
+            "maximum": 65535,            
+            "default": 6667
+        },
+        "nick": {
+            "description": "The nick of the bot used on the IRC server.",
+            "type": "string",
+            "required": true,
+            "default": "NodeBot"            
+        },
+        "username": {
+            "description": "The username of the bot used on the IRC server.",
+            "type": "string",
+            "required": true,
+            "default": "NodeBot"            
+        },
+        "realname": {
+            "description": "The realname of the bot used on the IRC server.",
+            "type": "string",
+            "required": true,
+            "default": "Powered by Michael Owens"            
+        },
+        "debug": {
+            "description": "Should the debug logging be enabled?",
+            "type": "boolean",
+            "required": true,
+            "default": false            
+        },
+        "channels": {
+            "description": "An IRC channel the bot connects to.",
+            "type": "array",
+            "required": true,
+            "default": ["NodeBot"]            
+        },
+        "channels": {
+            "description": "An IRC channel the bot connects to.",
+            "type": "array",
+            "required": true,
+            "default": ["#nodejs"]            
+        },
+        "plugins": {
+            "description": "Plugins this bot loads on startup.",
+            "type": "array",
+            "required": true,
+            "default": ["global", "reload", "gezien", "textfilter"]            
+        },
+        "command": {
+            "description": "the prefix for commands of this bot.",
+            "type": "string",
+            "required": true,
+            "default": "."                        
+        }
+
+    }
+}

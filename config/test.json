@@ -1,0 +1,12 @@
+{
+    "host":     "irc.freenode.com",
+    "port":     6667,
+    "nick":     "LordTacoNew",
+    "username": "LordTacoName",
+    "realname": "LordTacoRealName",
+    "channels": ["#lord-taco"],
+    "command":  "!",
+    "debug":        true,
+
+    "plugins":  ["global", "reload", "lastseen", "textfilter"]
+}

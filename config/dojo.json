@@ -1,0 +1,12 @@
+{
+    "host":       "irc.freenode.com",
+    "port":       6667,
+    "nick":       "dojoBot",
+    "username":   "dojoBot",
+    "realname":   "dojoBot - commands start with !",
+    "channels":   ["#dojo", "#dojo-meeting", "#dojo-ops"],
+    "command":    "!",
+    "debug":      false,
+    "plugins":    ["global", "reload", "freenode", "couchdb_log", "couchdb_seen", "trac", "dtk_api"]
+
+}

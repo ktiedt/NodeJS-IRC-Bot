@@ -1,3 +1,20 @@
+Version 0.0.6 (01/24/2013)
+==========================
+* ADDED:
+  * configuration via json
+  * delete specific bot.js files
+     * you can now use node bot.js --conf=dojo to load dojoBot.js
+     * default (config/config.json) now connects to channel #nodejsNodeBot to 
+       not disturb normal #nodejs channel operations
+  * add dependency to optimist
+  * add dependency to pkgconfig
+* UPDATED:
+  * minor bugfix in textfilter
+  * translate lastseen plugin
+  * translation in the reload plugin
+  * package.json for latest version
+  * adopt README.md to reflect latest changes
+
 01/22/2013 - Version 0.0.5
 ==========================
 * ADDED:

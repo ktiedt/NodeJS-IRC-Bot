@@ -6,23 +6,24 @@
  * @copyright	Michael Owens 2011
  */
 var sys = require('util'),
-	irc = require('./irc');
+	irc = require('./irc'),
+	pkgconfig = require('pkgconfig');
+	argv = require('optimist').default('conf', 'config').argv; // alternative: nconf
+
+var confName = argv.conf;
 
 /**
- * Config
+ * More advanced config
+ *
+ * we should provide a way to "enable" environment specific configs (like
+ * found on rails apps)
  */
-var config = {
-	host:		'irc.freenode.com',
-	port:		6667,
-	nick:		'NodeBot',
-	username:	'NodeBot',
-	realname:	'Powered by Michael Owens',
-	channels:	['#nodejs'],
-	command:	'.',
-	debug:		false,
+ var options = {
+    schema: 'config/schema.json',
+    config: 'config/' + confName + '.json'
+ };
 
-	plugins:	['global', 'reload', 'lastseen', 'textfilter']
-};
+ var config = pkgconfig(options);
 
 /**
  * Let's power up

@@ -1,0 +1,12 @@
+{
+	"host":		"irc.freenode.com",
+	"port":		6667,
+	"nick":		"NodeBot",
+	"username":	"NodeBot",
+	"realname":	"Powered by Michael Owens",
+	"channels":	["#nodejsNodeBot"],
+	"command":	".",
+	"debug":	false,
+
+	"plugins":	["global", "reload", "lastseen", "textfilter"]
+}
