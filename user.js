@@ -61,8 +61,6 @@ User.prototype.join = function(channel) {
         console.log("FAIL USER JOIN: ", this.nick);
         return;
     }
-    channel = channel.toLowerCase();
-
     var channels = this.channels,
         chan = this.irc.channels[channel];
 
@@ -80,7 +78,6 @@ User.prototype.part = function(/* string or Channel object */ channel) {
         console.log("FAIL USER PART: ", this.nick);
         return;
     }
-    channel = channel.toLowerCase();
 
     var channels = this.channels,
         irc = this.irc,

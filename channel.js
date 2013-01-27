@@ -46,7 +46,7 @@ exports.initialize = function(irc) {
 
 Channel = exports.Channel = function(irc, room, join, password) {
 	this.irc = irc;
-	this.name = room.toLowerCase();
+	this.name = room;
 	this.inRoom = false;
 	this.password = password;
     this.users = [];
@@ -58,7 +58,7 @@ Channel = exports.Channel = function(irc, room, join, password) {
 
 Channel.prototype.join = function() {
 	var chans = this.irc.channels,
-        name = this.name.toLowerCase();
+        name = this.name;
 
     chans[name] = this;
 	this.irc.raw('JOIN', name, this.password);

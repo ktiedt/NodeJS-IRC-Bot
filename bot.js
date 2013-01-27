@@ -15,6 +15,8 @@ var config = {
 	host:		'irc.freenode.com',
 	port:		6667,
 	nick:		'NodeBot',
+	nickPass:   '', //NickServ Password
+	zncIdent:   '', //ZNC Username and Password, in the form of user:pass
 	username:	'NodeBot',
 	realname:	'Powered by Michael Owens',
 	channels:	['#nodejs'],

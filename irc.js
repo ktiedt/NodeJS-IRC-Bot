@@ -4,6 +4,10 @@
  * @author		Michael Owens
  * @website		http://www.michaelowens.nl
  * @copyright	Michael Owens 2011
+ *
+ * @author		Shaun Walker
+ * @website     http://www.theshaun.com
+ * @copyright	Shaun Walker 2012
  */
 
 var sys = require('util'),
@@ -22,6 +26,8 @@ Server.prototype.initialize = function(config) {
 	this.host = config.host || '127.0.0.1';
 	this.port = config.port || 6667;
 	this.nick = config.nick || 'MikeBot';
+	this.nickPass = config.nickPass || '';
+	this.zncIdent = config.zncIdent || '';
 	this.username = config.username || 'MikeBot';
 	this.realname = config.realname || 'Powered by MikeBot';
 	this.command = config.command || '.';
@@ -92,9 +98,17 @@ Server.prototype.disconnect = function(reason) {
 
 Server.prototype.onConnect = function() {
 	sys.puts('connected');
+    if(this.zncIdent != '')
+    {
+  		this.raw('PASS ' + this.zncIdent);
+  	}
 
     this.raw('NICK', this.nick);
     this.raw('USER', this.username, '0', '*', ':' + this.realname);
+    if(this.nickPass != '')
+    {
+  		this.raw('NS id ' + this.nickPass);
+  	}
 
     this.emit('connect');
 };
