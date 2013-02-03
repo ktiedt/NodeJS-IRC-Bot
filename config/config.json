@@ -6,7 +6,7 @@
 	"realname":	"Powered by Michael Owens",
 	"channels":	["#nodejsNodeBot"],
 	"command":	".",
-	"debug":	false,
+    "logLevel":  "info",
 
 	"plugins":	["global", "reload", "lastseen", "textfilter"]
 }

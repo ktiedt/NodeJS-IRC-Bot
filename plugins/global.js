@@ -7,13 +7,13 @@
 */
 var sys = require('util');
 
-Plugin = exports.Plugin = function(irc) {
-	this.name = 'global';
+Plugin = exports.Plugin = function(ph) {
+    this.ph = ph;
+	this.name = this.ph.name;
+
 	this.title = 'Global';
 	this.version = '0.1';
 	this.author = 'Michael Owens';
-
-	this.irc = irc;
 };
 
 Plugin.prototype.onNumeric = function(msg) {
@@ -24,7 +24,7 @@ Plugin.prototype.onNumeric = function(msg) {
         return;
     }
 
-    var irc = this.irc, // irc object
+    var irc = this.ph.irc, // irc object
         userchans = irc.userchannels; // userchannels
 
     for (var i = 0; i < userchans.length; i++) {
@@ -36,8 +36,6 @@ Plugin.prototype.onNumeric = function(msg) {
         }
 
         var chan = new irc.channelObj(irc, channelName, true, password);
-
         irc.channels[chan.name] = chan;
-//		chan.send('Hey, did you miss me? ;-)');
     }
 };

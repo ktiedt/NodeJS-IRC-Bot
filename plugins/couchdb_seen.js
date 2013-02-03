@@ -9,14 +9,16 @@
 
 var sys = require('util');
 
-Plugin = exports.Plugin = function( irc ) {
-	this.name = 'couchdb_seen';
+Plugin = exports.Plugin = function(ph) {
+    this.ph = ph;
+	this.name = this.ph.name;
+
 	this.title = 'CouchDB Seen';
 	this.version = '0.1';
 	this.author = 'Karl Tiedt';
 
-	this.irc = irc;
-    if (irc.config.plugins.indexOf("couchdb_log") === -1) {
+	this.irc = this.ph.irc;
+    if (this.irc.config.plugins.indexOf("couchdb_log") === -1) {
         throw(this.name + ": requires couchdb_log plugin to be installed as well");
     }
 

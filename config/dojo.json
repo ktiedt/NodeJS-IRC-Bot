@@ -6,7 +6,7 @@
     "realname":   "dojoBot - commands start with !",
     "channels":   ["#dojo", "#dojo-meeting", "#dojo-ops"],
     "command":    "!",
-    "debug":      false,
+    "logLevel":  "info",
     "plugins":    ["global", "reload", "freenode", "couchdb_log", "couchdb_seen", "trac", "dtk_api"]
 
 }

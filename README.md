@@ -21,6 +21,8 @@ following command:
 
     node bot.js --config=test    
 
-The bot will now attempt to connect. Turn on debugging to see the incoming/outgoing packets.
+The bot will now attempt to connect. Raise the logLevel (see config/config.json) to see incoming/outgoing packets.
+We are using [winston](https://npmjs.org/package/winston) as a log framework, the log levels used right now are
+error, info and verbose (following the npm log levels).  
 
 *** Originally written by [Michael Owens](http://www.michaelowens.nl).

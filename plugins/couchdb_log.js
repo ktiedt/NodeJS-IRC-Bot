@@ -11,13 +11,15 @@ var sys = require('util'),
 	cradle = require('cradle'),
 	c = new(cradle.Connection)();
 
-Plugin = exports.Plugin = function(irc) {
-	this.name = 'couchdb_log';
+Plugin = exports.Plugin = function(ph) {
+    this.ph = ph;
+	this.name = this.ph.name;
+
 	this.title = 'CouchDB Logging';
 	this.version = '0.1';
 	this.author = 'Karl Tiedt';
 
-	this.irc = irc;
+	this.irc = this.ph.irc;
     this.db = c.database('dojobot');
 
     // fields that are saved to the database documents

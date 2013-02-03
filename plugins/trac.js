@@ -12,8 +12,10 @@
 
 var sys = require('util');
 
-Plugin = exports.Plugin = function(irc) {
-	this.name = 'trac';
+Plugin = exports.Plugin = function(ph) {
+    this.ph = ph;
+	this.name = this.ph.name;
+
 	this.title = 'Trac Interface';
 	this.version = '0.1';
 	this.author = 'Karl Tiedt';
@@ -22,9 +24,9 @@ Plugin = exports.Plugin = function(irc) {
     this.prefix = 'trac'; // allow inline matching via trac[changeset] or trac#ticket
     this.nemesis = 'dojogurl'; // do not announce tickets of this user is on the channel
 
-	this.irc = irc;
+	this.irc = ph.irc;
 
-    if (irc.config.plugins.indexOf("couchdb_log") === -1) {
+    if (this.irc.config.plugins.indexOf("couchdb_log") === -1) {
         throw(this.name + ": requires couchdb_log plugin to be installed as well");
     }
 

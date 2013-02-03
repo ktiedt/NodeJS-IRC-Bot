@@ -1,8 +1,21 @@
 {
-  "author": "Michael Owens (http://www.michaelowens.nl)",
   "name": "NodeJS-IRC-Bot",
   "description": "An Open Source IRC Bot written with NodeJS",
-  "version": "0.0.6",
+  "version": "0.0.7",
+  "author": "Michael Owens (http://www.michaelowens.nl)",
+  "contributors ": [{
+    "name": "Michael Owens",
+    "web": "http://www.michaelowens.nl"
+  },
+  {
+    "name": "Karl Tiedt",
+    "web": "http://www.twitter.com/ktiedt"
+  },
+  {
+    "name": "Markus M. May",
+    "email": "mmay@javafreedom.org",
+    "web": "http://www.javafreedom.org"
+  }],   
   "repository": {
     "type": "git",
     "url": "http://github.com/ktiedt/NodeJS-IRC-Bot"
@@ -13,10 +26,19 @@
   },
   "dependencies": {
     "pkgconfig": "0.0.4",
-    "optimist": "0.3.5"
+    "optimist": "0.3.5",
+    "winston": "0.6.x"
   },
+  "devDependencies": {
+    "should": "1.2.x",
+    "underscore": "*",
+    "mocha": "*"
+  },  
   "licenses": {
     "type": "UNLICENSE",
     "url": "http://unlicense.org/"
-  }
+  },
+  "scripts": {
+    "test": "mocha --reporter spec test/*.spec.js"
+  }  
 }

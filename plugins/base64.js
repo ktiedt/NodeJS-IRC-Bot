@@ -7,14 +7,15 @@
  */
 var sys = require('util');
 
-Plugin = exports.Plugin = function(irc) {
+Plugin = exports.Plugin = function(ph) {
+	this.ph = ph;
+	this.name = this.ph.name;
 
-	this.name = 'base64';
 	this.title = 'Base64 Encoder/Decoder';
 	this.version = '0.1';
 	this.author = 'Shaun Walker';
 
-	this.irc = irc;
+	this.irc = this.ph.irc;
 
 	this.seen = [];
 

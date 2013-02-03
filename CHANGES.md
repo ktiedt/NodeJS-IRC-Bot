@@ -1,3 +1,14 @@
+Version 0.0.7 (01/28/2013)
+==========================
+* ADDED:
+  * add logging (winston)
+* UPDATED:
+  * moved classes to lib directory
+  * minor bugfix in config 
+  * remove freenode option (nickPass) in irc.js, please use already existing freenode plugin for this
+  * added pluginConfigs option to config, to allow for individual settings for each plugin (see freenode
+    plugin)
+
 Version 0.0.6 (01/24/2013)
 ==========================
 * ADDED:

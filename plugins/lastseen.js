@@ -7,18 +7,17 @@
  */
 var sys = require('util');
 
-Plugin = exports.Plugin = function(irc) {
+Plugin = exports.Plugin = function(ph) {
+	this.ph = ph;
+	this.name = this.ph.name;
 
-	this.name = 'lastseen';
 	this.title = 'Last Seen';
 	this.version = '0.1';
 	this.author = 'Michael Owens';
 
-	this.irc = irc;
-
 	this.seen = [];
 
-	this.irc.addTrigger(this, 'lastseen', this.trigLastSeen);
+	this.ph.irc.addTrigger(this, 'lastseen', this.trigLastSeen);
 
 };
 
@@ -44,7 +43,7 @@ Plugin.prototype.onNick = function(msg) {
 
 Plugin.prototype.updateUser = function(msg, argument) {
 
-	var u = this.irc.user(msg.prefix);
+	var u = this.ph.irc.user(msg.prefix);
     console.log(u, msg.prefix);
 	this.seen[u.toLowerCase()] = new Date();
 
@@ -57,9 +56,9 @@ Plugin.prototype.updateUser = function(msg, argument) {
 
 Plugin.prototype.trigLastSeen = function(msg) {
 	var c = msg.arguments[0], // channel
-		u = this.irc.user(msg.prefix), // user
+		u = this.ph.irc.user(msg.prefix), // user
 		m = msg.arguments[1], // message
-        chan = this.irc.channels[c], // channel object
+        chan = this.ph.irc.channels[c], // channel object
         params = m.split(' ');
 
 	params.shift();

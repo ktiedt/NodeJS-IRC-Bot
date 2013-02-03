@@ -32,6 +32,12 @@
             "required": true,
             "default": "Powered by Michael Owens"            
         },
+        "zncIdent": {
+            "description": "The password of the ZNC Bouncer.",
+            "type": "string",
+            "required": false,
+            "default": ""            
+        },
         "debug": {
             "description": "Should the debug logging be enabled?",
             "type": "boolean",
@@ -44,12 +50,6 @@
             "required": true,
             "default": ["NodeBot"]            
         },
-        "channels": {
-            "description": "An IRC channel the bot connects to.",
-            "type": "array",
-            "required": true,
-            "default": ["#nodejs"]            
-        },
         "plugins": {
             "description": "Plugins this bot loads on startup.",
             "type": "array",
@@ -61,6 +61,17 @@
             "type": "string",
             "required": true,
             "default": "."                        
+        },
+        "pluginConfigs": {
+            "description": "Plugin configurations, defined by the pluginname and the wanted property.",
+            "type": "object",
+            "required": false,
+            "default": "",
+            "properties": {
+                "properties": {
+                    "type": "object"
+                }
+            }
         }
 
     }

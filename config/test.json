@@ -1,12 +1,17 @@
 {
     "host":     "irc.freenode.com",
     "port":     6667,
-    "nick":     "LordTacoNew",
-    "username": "LordTacoName",
-    "realname": "LordTacoRealName",
-    "channels": ["#lord-taco"],
+    "nick":     "NodeJS-IRC-Bot",
+    "username": "NodeJS-IRC-Bot",
+    "realname": "NodeJS-IRC-Bot",
+    "channels": ["#anunknownchannel"],
     "command":  "!",
-    "debug":        true,
+    "logLevel":  "verbose",
+    "pluginConfigs": {
+        "freenode": {
+            "nickPass": "nopassword"
+        }
+    },
 
-    "plugins":  ["global", "reload", "lastseen", "textfilter"]
+    "plugins":  ["global", "reload", "lastseen", "textfilter", "freenode", "8ball"]
 }
