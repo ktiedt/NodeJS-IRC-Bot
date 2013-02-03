@@ -1,3 +1,13 @@
+Version 0.0.8 (02/03/2013)
+==========================
+* ADDED:
+  * add admin plugin (be cautious, this can change some of your settings)
+  * added testcases for plugins
+  * added .travis.yml file to the package
+* UPDATED:
+  * freenode plugin (be cautious, this can change some of your settings)
+  * added pluginHelper to the plugins, instead of handing over the irc class directl
+
 Version 0.0.7 (01/28/2013)
 ==========================
 * ADDED:
