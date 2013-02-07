@@ -5,12 +5,11 @@
  * @website		http://www.michaelowens.nl
  * @copyright	Michael Owens 2011
  */
-var sys = require('util');
+var util = require('util'),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-
-	this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+	Plugin.super_.call(this, irc, name);
 
 	this.title = 'Word filter';
 	this.version = '0.2';
@@ -18,11 +17,12 @@ Plugin = exports.Plugin = function(ph) {
 
 	this.filters = ['swine', 'politician', 'girl'];
 
-    this.ph.irc.addTrigger(this, 'textfilter', this.trigTextfilter);
+    this.irc.addTrigger(this, 'textfilter', this.trigTextfilter);
 };
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 Plugin.prototype.onMessage = function(msg) {
-	var irc = this.ph.irc,
+	var irc = this.irc,
         c = msg.arguments[0], // channel
 		u = irc.user(msg.prefix), // user
 		m = msg.arguments[1], // message
@@ -46,7 +46,7 @@ Plugin.prototype.onMessage = function(msg) {
 };
 
 Plugin.prototype.trigTextfilter = function(msg) {
-	var irc = this.ph.irc, // irc object
+	var irc = this.irc, // irc object
 	    c = msg.arguments[0], // channel
         chan = irc.channels[c], // channel object
 		u = irc.user(msg.prefix), // user

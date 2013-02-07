@@ -6,12 +6,12 @@
 * @copyright   Markus M. May 2013
 */
 
-PluginHelper = exports.PluginHelper = function(irc, name) {
+BasePlugin = exports.BasePlugin = function(irc, name) {
     this.irc = irc;
     this.name = name;
 };
 
-PluginHelper.prototype.getPluginProperty = function(propertyName) {
+BasePlugin.prototype.getPluginProperty = function(propertyName) {
     this.irc.logger.verbose("fetching propertyName: " + propertyName + " for plugin: " + this.name);
 
     if (this.irc.config.pluginConfigs !== 'undefined') {
@@ -27,7 +27,7 @@ PluginHelper.prototype.getPluginProperty = function(propertyName) {
     return 'undefined';
 };
 
-PluginHelper.prototype.parseTriggerMessage = function(msg) {
+BasePlugin.prototype.parseTriggerMessage = function(msg) {
     var m = msg.arguments[1], // message 
         params = m.split(' '),
         result = {};

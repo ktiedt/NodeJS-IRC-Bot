@@ -8,11 +8,11 @@
  * host: Base URL for website instance
  */
 
-var sys = require('util');
+var util = require('util'),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-	this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+    Plugin.super_.call(this, irc, name);
 
 	this.title = 'Dojo Toolkit API Interface';
 	this.version = '0.1';
@@ -20,10 +20,9 @@ Plugin = exports.Plugin = function(ph) {
 
     this.host = 'http://dojotoolkit.org/api/';
 
-	this.irc = this.ph.irc;
-
     this.irc.addTrigger(this, 'api', this.api);
 };
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 Plugin.prototype.api = function(msg) {
 	var irc = this.irc,

@@ -7,27 +7,27 @@
  *
  */
 
-var sys = require('util'),
+var util = require('util'),
 	cradle = require('cradle'),
-	c = new(cradle.Connection)();
+	c = new(cradle.Connection)(),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-	this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+    Plugin.super_.call(this, irc, name);
 
 	this.title = 'CouchDB Logging';
 	this.version = '0.1';
 	this.author = 'Karl Tiedt';
 
-	this.irc = this.ph.irc;
     this.db = c.database('dojobot');
 
     // fields that are saved to the database documents
     this.fields = ['nick', 'channel', 'host', 'date', 'message', 'type'];
 
     // store reference to the databse connection for other couchdb plugins
-    irc.couchdb = this.db;
+    this.irc.couchdb = this.db;
 };
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 // onMessage handler for logging
 Plugin.prototype.onMessage = function(msg) {

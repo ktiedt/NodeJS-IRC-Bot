@@ -5,16 +5,18 @@
 * @website		http://www.michaelowens.nl
 * @copyright	Michael Owens 2011
 */
-var sys = require('util');
+var util = require('util'),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-	this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+    Plugin.super_.call(this, irc, name);
 
 	this.title = 'Global';
 	this.version = '0.1';
 	this.author = 'Michael Owens';
 };
+
+util.inherits(Plugin, basePlugin.BasePlugin)
 
 Plugin.prototype.onNumeric = function(msg) {
     var command = msg.command;
@@ -24,7 +26,7 @@ Plugin.prototype.onNumeric = function(msg) {
         return;
     }
 
-    var irc = this.ph.irc, // irc object
+    var irc = this.irc, // irc object
         userchans = irc.userchannels; // userchannels
 
     for (var i = 0; i < userchans.length; i++) {

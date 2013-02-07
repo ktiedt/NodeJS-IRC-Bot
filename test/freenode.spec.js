@@ -1,6 +1,6 @@
 var irc  = require('./irc-stub.js'),
-    ph = require('../lib/pluginHelper.js'),
     freenode = require('../plugins/freenode.js'),
+    winston = require('winston'),    
     should = require('should'),    
     _ = require('underscore');
 
@@ -11,12 +11,17 @@ describe("Freenode", function(){
                         }
                     }
                 };
-    var _irc, _ph, _freenode;
+    config.logger = new (winston.Logger)({
+        transports: [
+          new (winston.transports.Console)({ level: 'verbose' })
+        ]
+    });
+
+    var _irc, _freenode;
 
     beforeEach(function() {
         _irc = new irc.Server(config);
-        _ph = new ph.PluginHelper(_irc, 'freenode');
-        _freenode = new freenode.Plugin(_ph);    
+        _freenode = new freenode.Plugin(_irc, 'freenode');    
     })
 
     describe("#onConnect", function() {

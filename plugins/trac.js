@@ -10,11 +10,11 @@
  * host: Base URL for trac instance
  */
 
-var sys = require('util');
+var util = require('util'),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-	this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+    Plugin.super_.call(this, irc, name);
 
 	this.title = 'Trac Interface';
 	this.version = '0.1';
@@ -24,15 +24,11 @@ Plugin = exports.Plugin = function(ph) {
     this.prefix = 'trac'; // allow inline matching via trac[changeset] or trac#ticket
     this.nemesis = 'dojogurl'; // do not announce tickets of this user is on the channel
 
-	this.irc = ph.irc;
-
-    if (this.irc.config.plugins.indexOf("couchdb_log") === -1) {
-        throw(this.name + ": requires couchdb_log plugin to be installed as well");
-    }
-
     this.irc.addTrigger(this, 'ticket', this.ticket);
     this.irc.addTrigger(this, 'changeset', this.changeset);
 };
+
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 Plugin.prototype.ticket = function(msg) {
 	var irc = this.irc,

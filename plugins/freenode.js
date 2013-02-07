@@ -8,24 +8,26 @@
  * Identifies to nickserv on FreeNode onConnect
  *      update nickPass as needed
  */
-var util = require('util');
+var util = require('util'),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-    this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+    Plugin.super_.call(this, irc, name);
 
     this.title = 'FreeNode Services';
     this.version = '0.1';
     this.author = 'Karl Tiedt';
 
     try {
-        this.nickPass = this.ph.getPluginProperty('nickPass');
+        this.nickPass = this.getPluginProperty('nickPass');
     } catch (e) {
-        this.ph.irc.logger.error('Cannot load config options of freenode plugin.', e);
+        this.irc.logger.error('Cannot load config options of freenode plugin.', e);
     }
 
-    this.ph.irc.addTrigger(this, 'nickserv', this.trigNickServ);
+    this.irc.addTrigger(this, 'nickserv', this.trigNickServ);
 };
+
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 Plugin.prototype.onConnect = function() {
     if (typeof this.nickPass != 'undefined') {
@@ -34,13 +36,13 @@ Plugin.prototype.onConnect = function() {
 };
 
 Plugin.prototype.nickServLogin = function() {
-    this.ph.irc.raw('NS id ' + this.nickPass);
+    this.irc.raw('NS id ' + this.nickPass);
 }
 
 Plugin.prototype.trigNickServ = function(msg) {
     var m = msg.arguments[1], // message 
         params = m.split(' '),
-        irc = this.ph.irc;
+        irc = this.irc;
 
     params.shift();
 
@@ -55,12 +57,12 @@ Plugin.prototype.trigNickServ = function(msg) {
         } else if (seek === 'release') {
             // release a used nick
             if (typeof params[1] !== 'undefined') {
-                this.ph.irc.raw('NS release ' + params[1]);
+                this.irc.raw('NS release ' + params[1]);
             }
         } else if (seek === 'passwd') {
             // change password with the given one
             if (typeof params[1] !== 'undefined') {
-                this.ph.irc.raw('NS SET PASSWORD ' + params[1]);
+                this.irc.raw('NS SET PASSWORD ' + params[1]);
             }
         }
     }

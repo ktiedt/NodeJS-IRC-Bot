@@ -5,23 +5,21 @@
  * @website		http://www.theshaun.com
  * @copyright	Shaun Walker 2013
  */
-var sys = require('util');
+var util = require('util'),
+	basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-	this.ph = ph;
-	this.name = this.ph.name;
-
+Plugin = exports.Plugin = function(irc, name) {
+	Plugin.super_.call(this, irc, name);
+	
 	this.title = '8 Ball';
 	this.version = '0.1';
 	this.author = 'Shaun Walker';
 
-	this.irc = this.ph.irc;
-
 	this.seen = [];
 
 	this.irc.addTrigger(this, '8ball', this.trig8Ball);
-
 };
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 Plugin.prototype.trig8Ball = function(msg) {
 	var c = msg.arguments[0], // channel

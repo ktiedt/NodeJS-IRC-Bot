@@ -27,7 +27,8 @@
   "dependencies": {
     "pkgconfig": "0.0.4",
     "optimist": "0.3.5",
-    "winston": "0.6.x"
+    "winston": "0.6.x",
+    "cradle": "latest"
   },
   "devDependencies": {
     "should": "1.2.x",

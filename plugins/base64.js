@@ -5,17 +5,15 @@
  * @website		http://www.theshaun.com
  * @copyright	Shaun Walker 2013
  */
-var sys = require('util');
+var util = require('util'),
+	basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-	this.ph = ph;
-	this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+	Plugin.super_.call(this, irc, name);
 
 	this.title = 'Base64 Encoder/Decoder';
 	this.version = '0.1';
 	this.author = 'Shaun Walker';
-
-	this.irc = this.ph.irc;
 
 	this.seen = [];
 

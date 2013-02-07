@@ -1,3 +1,13 @@
+Version 0.0.9 (02/07/2013)
+==========================
+* ADDED:
+  * add cradle dependency for couchdb plugins
+  * added several new testcases for plugins
+  * added inheritance for plugins (using basePlugin as the superclass)
+* UPDATED:
+  * trac plugin - remove dependency on couchdb_log plugin
+  * all plugins to use inherited basePlugin
+
 Version 0.0.8 (02/03/2013)
 ==========================
 * ADDED:

@@ -7,36 +7,33 @@
  *
  * Provides some basic functionalities like changing nick
  */
-var util = require('util');
+var util = require('util'),
+    basePlugin = require('./basePlugin');
 
-Plugin = exports.Plugin = function(ph) {
-    this.ph = ph;
-    this.name = this.ph.name;
+Plugin = exports.Plugin = function(irc, name) {
+    Plugin.super_.call(this, irc, name);
 
     this.title = 'Admin Services';
     this.version = '0.1';
     this.author = 'Markus M. May';
 
-    this.ph.irc.addTrigger(this, 'admin', this.trigAdmin);
+    this.irc.addTrigger(this, 'admin', this.trigAdmin);
 };
+util.inherits(Plugin, basePlugin.BasePlugin);
 
 Plugin.prototype.trigAdmin = function(msg) {
     var m = msg.arguments[1], // message 
         params = m.split(' '),
-        irc = this.ph.irc;
-
+        irc = this.irc;
 
     try {
-        var commandObj = this.ph.parseTriggerMessage(msg);        
+        var commandObj = this.parseTriggerMessage(msg);        
     } catch (e) {
         chan.send('\002Example:\002 ' + this.irc.config.command + 'admin <command> <options>');
     }
 
     var command = commandObj.command;
     var options = commandObj.options;
-
-    console.log("command1: ", command);
-    console.log("options1: ", options);
 
     if (command === 'nick') {
         irc.raw('NICK', options[0]);         
